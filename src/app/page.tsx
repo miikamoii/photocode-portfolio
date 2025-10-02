@@ -9,6 +9,7 @@ import Link from "next/link";
 
 export default function Home() {
   const [hovered, setHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
   const waveControls = useAnimation();
   const [isWaving, setIsWaving] = useState(false);
   const [pageLoaded, setPageLoaded] = useState(false);
@@ -26,6 +27,10 @@ export default function Home() {
       })
       .then(() => setIsWaving(false));
   };
+
+  useEffect(() => {
+    setIsMobile("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  }, []);
 
   useEffect(() => {
     const handleLoad = () => setPageLoaded(true);
@@ -65,7 +70,7 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-20 min-h-screen">
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-20 min-h-screen mobile-landscape-scale">
         <h1 className="text-4xl sm:text-6xl font-bold tracking-tight relative inline-block">
           <motion.span
             className="inline-block origin-[70%_70%] mr-2"
@@ -79,10 +84,14 @@ export default function Home() {
             <motion.span
               className="text-purple-400 hover:text-purple-300 relative cursor-pointer inline-block transition-colors"
               onMouseEnter={() => {
-                setHovered(true);
-                if (annotationFullyAppeared) setAnnotationVisible(false);
+                if (isMobile === false) {
+                  setHovered(true);
+                  if (annotationFullyAppeared) setAnnotationVisible(false);
+                }
               }}
-              onMouseLeave={() => setHovered(false)}
+              onMouseLeave={() => {
+                if (isMobile === false) setHovered(false);
+              }}
               initial={{ y: -150, opacity: 0 }}
               animate={pageLoaded ? { y: 0, opacity: 1 } : {}}
               transition={{
@@ -95,7 +104,7 @@ export default function Home() {
             >
               Miika
               <AnimatePresence>
-                {showAnnotation && annotationVisible && (
+                {showAnnotation && annotationVisible && isMobile === false && (
                   <motion.div
                     initial={{ opacity: 0, x: -10, y: 10 }}
                     animate={{ opacity: 1, x: 0, y: 0 }}
@@ -115,7 +124,7 @@ export default function Home() {
                 )}
               </AnimatePresence>
               <AnimatePresence>
-                {hovered && (
+                {isMobile !== null && (isMobile || hovered) && (
                   <motion.div
                     initial={{ opacity: 0, y: -100, scale: 0.9 }}
                     animate={{ opacity: 1, y: -210, scale: 1.8 }}
@@ -134,7 +143,6 @@ export default function Home() {
                         className="object-cover w-full h-full transition-opacity duration-500"
                         placeholder="blur"
                         blurDataURL={pfpData.blurDataURL}
-                        style={{ transition: "opacity 0.5s" }}
                       />
                     </div>
                   </motion.div>

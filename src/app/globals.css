@@ -94,3 +94,15 @@ html.ready {
 .animate-glow {
   animation: glow 2s ease-in-out infinite;
 }
+
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .mobile-landscape-scale {
+    transform: scale(0.6);
+    transform-origin: center center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 0;
+  }
+}

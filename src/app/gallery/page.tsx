@@ -14,35 +14,37 @@ export default async function GalleryPage() {
   const session = await getServerSession(authOptions);
 
   return (
-    <main className="min-h-screen px-6 py-12 max-w-5xl mx-auto">
+    <main className="min-h-screen px-4 py-8 sm:px-6 sm:py-12 max-w-5xl mx-auto">
       <section>
-        <h1 className="text-4xl font-extrabold mb-4 text-center dark:text-white">
+        <h1 className="text-3xl sm:text-4xl font-extrabold mb-4 sm:mb-6 text-center dark:text-white">
           My Gallery
         </h1>
-        <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 text-center max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 mb-6 sm:mb-8 text-center max-w-2xl mx-auto">
           Welcome to my gallery. I&#39;m a developer and photographer passionate
           about creating beautiful, fast, and functional web experiences.
         </p>
 
-        <TipButton />
+        <div className="mb-6 sm:mb-8">
+          <TipButton />
+        </div>
 
         <Gallery images={images} />
       </section>
 
-      <div className="border-t border-purple-300 dark:border-purple-800  my-20" />
+      <div className="border-t border-purple-300 dark:border-purple-800 my-16 sm:my-20" />
 
-      <section className="py-12 px-4 transition-colors duration-300">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-4xl font-extrabold mb-4 text-center dark:text-white">
+      <section className="px-2 sm:px-4 py-8 sm:py-12 transition-colors duration-300">
+        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12">
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-3 sm:mb-4 text-center dark:text-white">
             Before/After Edits
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg">
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
             I also specialize in post-processing and photo editing. Here&#39;s a
             look at some before-and-after comparisons to showcase my editing.
           </p>
         </div>
 
-        <div className="space-y-12">
+        <div className="space-y-8 sm:space-y-12">
           <BeforeAfterSlider
             id="ba1"
             beforeSrc="/optimized/compare/before1.webp"
