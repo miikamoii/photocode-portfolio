@@ -1,5 +1,6 @@
 // src/app/about/page.tsx
 import React from "react";
+import { FaTools, FaHandSparkles, FaBullseye } from "react-icons/fa";
 
 export const metadata = {
   title: "About This Site",
@@ -28,8 +29,9 @@ export default function AboutPage() {
       </section>
 
       <section className="mb-8 sm:mb-10">
-        <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">
-          🔧 Tech Stack
+        <h2 className="flex items-center gap-2 text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">
+          <FaTools className="text-purple-500 shrink-0" />
+          Tech Stack
         </h2>
         <ul className="text-gray-600 dark:text-gray-400 list-disc list-outside pl-5 sm:pl-6 space-y-1 sm:space-y-2 text-sm sm:text-base">
           <li>
@@ -60,8 +62,9 @@ export default function AboutPage() {
       </section>
 
       <section className="mb-8 sm:mb-10">
-        <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">
-          ✨ Features
+        <h2 className="flex items-center gap-2 text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">
+          <FaHandSparkles className="text-purple-500 shrink-0" />
+          Features
         </h2>
         <ul className="text-gray-600 dark:text-gray-400 list-disc list-outside pl-5 sm:pl-6 space-y-1 sm:space-y-2 text-sm sm:text-base">
           <li>Temporary guest login system for private slider tool access</li>
@@ -74,7 +77,8 @@ export default function AboutPage() {
       </section>
 
       <section>
-        <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">
+        <h2 className="flex items-center gap-2 text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">
+          <FaBullseye className="text-purple-500 shrink-0" />
           Purpose
         </h2>
         <p className="text-gray-600 dark:text-gray-400">
